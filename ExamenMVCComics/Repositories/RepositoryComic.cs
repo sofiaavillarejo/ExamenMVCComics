@@ -70,22 +70,18 @@ namespace ExamenMVCComics.Repositories
             return consulta.ToList();
         }
 
-        public List<Comic> DetalleComic(string Nombre)
+        public Comic DetalleComic(string Nombre)
         {
             var consulta = from datos in this.tablaComics.AsEnumerable() where datos.Field<string>("NOMBRE") == Nombre select datos;
-            List<Comic> comics = new List<Comic>();
-            foreach (var row in consulta)
+            var row = consulta.First();
+            Comic comic = new Comic
             {
-                Comic sala = new Comic
-                {
-                    IdComic = row.Field<int>("IDCOMIC"),
-                    Nombre = row.Field<string>("NOMBRE"),
-                    Imagen = row.Field<string>("IMAGEN"),
-                    Descripcion = row.Field<string>("DESCRIPCION"),
-                };
-                comics.Add(sala);
-            }
-            return comics;
+                IdComic = row.Field<int>("IDCOMIC"),
+                Nombre = row.Field<string>("NOMBRE"),
+                Imagen = row.Field<string>("IMAGEN"),
+                Descripcion = row.Field<string>("DESCRIPCION"),
+            };
+            return comic;
         }
     }
 }

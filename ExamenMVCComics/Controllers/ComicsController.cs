@@ -39,8 +39,8 @@ namespace ExamenMVCComics.Controllers
         public IActionResult BuscadorComics(string Nombre)
         {
             ViewData["NOMBRE"] = this.repo.GetIdComic();
-            List<Comic> comics = this.repo.DetalleComic(Nombre);
-            return View(comics);
+            Comic comic = this.repo.DetalleComic(Nombre);
+            return View(comic);
         }
 
     }

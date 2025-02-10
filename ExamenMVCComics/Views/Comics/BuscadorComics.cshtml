@@ -1,43 +1,40 @@
 ﻿<h1>Buscador Comics</h1>
 
-@model List<Comic>
+@model Comic
 
 @{
-	List<string> comics = ViewData["NOMBRE"] as List<string>;
+    List<string> comics = ViewData["NOMBRE"] as List<string>;
 }
 
 <form method="post">
-	<label>Nombre del Cómic:</label>
-	<select name="Nombre" class="form-control">
-		@foreach (string Nombre in comics)
-		{
-			<option value="@Nombre">@Nombre</option>
-		}
-	</select>
-	<button class="btn btn-info">Buscar cómic</button>
+    <label>Nombre del Cómic:</label>
+    <select name="Nombre" class="form-control">
+        @foreach (string Nombre in comics)
+        {
+            <option value="@Nombre">@Nombre</option>
+        }
+    </select>
+    <button class="btn btn-info">Buscar cómic</button>
 </form>
 
 @if (Model != null)
 {
-	<table style="margin-top: 2rem" class="table table-striped">
-		<thead>
-			<tr>
-				<th>ID Cómic</th>
-				<th>Nombre</th>
-				<th>Imágen</th>
-				<th>Descripción</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (Comic comic in Model)
-			{
-				<tr>
-					<td>@comic.IdComic</td>
-					<td>@comic.Nombre</td>
-					<td><img src="@comic.Imagen" style="width:100px; height: 100px" /></td>
-					<td>@comic.Descripcion</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+    <table style="margin-top: 2rem" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID Cómic</th>
+                <th>Nombre</th>
+                <th>Imágen</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.IdComic</td>
+                <td>@Model.Nombre</td>
+                <td><img src="@Model.Imagen" style="width:100px; height: 100px" /></td>
+                <td>@Model.Descripcion</td>
+            </tr>
+        </tbody>
+    </table>
 }
